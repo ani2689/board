@@ -1,24 +1,25 @@
 package com.ani.board.domain.board.domain.entity
 
 import com.ani.board.domain.user.domain.entity.User
-import javax.persistence.Entity
-import javax.persistence.FetchType
-import javax.persistence.Id
-import javax.persistence.ManyToOne
+import org.hibernate.annotations.DynamicUpdate
+import javax.persistence.*
 
 @Entity
+@DynamicUpdate
 class Board (
 
     @Id
-    var id: Long = 0,
+    var id: Long,
 
+    @Column(columnDefinition = "TEXT")
     var title: String,
 
+    @Column(columnDefinition = "TEXT")
     var detail: String,
 
     var bookmark: Int,
 
     @ManyToOne(fetch = FetchType.EAGER)
-    val writer: User
+    val author: User
 
 )
