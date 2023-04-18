@@ -22,4 +22,19 @@ class Board (
     @ManyToOne(fetch = FetchType.EAGER)
     val author: User
 
-)
+){
+    fun updateTitle(title: String){
+        this.title = title
+    }
+    fun updateDetail(detail: String){
+        this.detail = detail
+    }
+
+    fun addBookmark(){
+        bookmark++
+    }
+
+    fun removeBookmark(){
+        bookmark--
+    }
+}
