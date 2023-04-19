@@ -20,7 +20,7 @@ class User (
 
     @JsonIgnore
     @OneToMany(fetch = FetchType.LAZY)
-    var script: List<Board>,
+    var script: List<Board>?,
 
     @JsonIgnore
     @OneToMany(fetch = FetchType.LAZY)
