@@ -5,5 +5,5 @@ import org.springframework.stereotype.Service
 
 @Service
 interface DeleteBoardService {
-    fun execute(board: BoardDto)
+    fun execute(boardId: Long)
 }

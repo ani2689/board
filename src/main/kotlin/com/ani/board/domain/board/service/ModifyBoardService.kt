@@ -4,5 +4,5 @@ import org.springframework.stereotype.Service
 
 @Service
 interface ModifyBoardService {
-    fun execute(title: String, detail: String)
+    fun execute(updateBoardRequestDto: Upda)
 }
