@@ -1,8 +1,8 @@
 package com.ani.board.domain.board.presentation.data.dto
 
-data class BoardDto (
+data class BoardListDto (
+    val id: Long,
     val title: String,
-    val detail: String,
     val author: String,
     val bookmark: Int
 )
