@@ -30,11 +30,13 @@ class Board (
         this.detail = detail
     }
 
-    fun addBookmark(){
+    fun addBookmark(): Board{
         bookmark++
+        return this
     }
 
-    fun removeBookmark(){
+    fun removeBookmark(): Board{
         bookmark--
+        return this
     }
 }
