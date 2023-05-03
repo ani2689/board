@@ -1,5 +1,6 @@
 package com.ani.board.domain.board.utils.impl
 
+import com.ani.board.domain.board.domain.entity.Board
 import com.ani.board.domain.board.domain.repository.BoardRepository
 import com.ani.board.domain.board.presentation.data.dto.BoardDto
 import com.ani.board.domain.board.utils.BoardConverter
@@ -16,7 +17,12 @@ class SaveBoardUtilImpl(
     override fun save(board: BoardDto) {
         userUtil.findCurrentLoginUser()
             .let { boardConverter.toEntity(board,it) }
-            .let {boardRepository.save(it)}
+            .let { boardRepository.save(it) }
     }
+
+    override fun save(board: Board) {
+        boardRepository.save(board)
+    }
+
 
 }

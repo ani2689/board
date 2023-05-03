@@ -8,13 +8,7 @@ import com.ani.board.domain.board.service.*
 import com.ani.board.domain.board.utils.BoardConverter
 import org.springframework.http.HttpStatus
 import org.springframework.http.ResponseEntity
-import org.springframework.web.bind.annotation.DeleteMapping
-import org.springframework.web.bind.annotation.GetMapping
-import org.springframework.web.bind.annotation.PathVariable
-import org.springframework.web.bind.annotation.PostMapping
-import org.springframework.web.bind.annotation.PutMapping
-import org.springframework.web.bind.annotation.RequestBody
-import org.springframework.web.bind.annotation.RestController
+import org.springframework.web.bind.annotation.*
 import javax.validation.Valid
 
 @RestController("/board")
@@ -24,34 +18,40 @@ class BoardController (
     private val deleteBoardService: DeleteBoardService,
     private val findAllBoardService: FindAllBoardService,
     private val findBoardByIdService: FindBoardByIdService,
-    private val updateBoardService: UpdateBoardService
+    private val updateBoardService: UpdateBoardService,
+    private val addBookmarkBoardService: AddBookmarkBoardService
 ){
     @PostMapping
     fun createBoard(@Valid @RequestBody createBoardRequestDto: CreateBoardRequestDto): ResponseEntity<Void> =
         boardConverter.toDto(createBoardRequestDto)
-            .let{createBoardService.execute(it)}
+            .let{ createBoardService.execute(it) }
             .let{ ResponseEntity(HttpStatus.CREATED) }
 
     @GetMapping
     fun findAllBoard(): ResponseEntity<List<BoardListResponseDto>> =
         findAllBoardService.execute()
-            .map{boardConverter.toResponseDto(it)}
-            .let{ResponseEntity.ok().body(it) }
+            .map{ boardConverter.toResponseDto(it) }
+            .let{ ResponseEntity.ok().body(it) }
 
     @GetMapping("/{board_id}")
     fun findBoardById(@PathVariable("board_id") boardId: Long): ResponseEntity<DetailBoardResponseDto> =
         findBoardByIdService.execute(boardId)
-            .let{boardConverter.toResponseDto(it)}
-            .let{ResponseEntity.ok().body(it)}
+            .let{ boardConverter.toResponseDto(it) }
+            .let{ ResponseEntity.ok().body(it) }
 
     @PutMapping("/{board_id}")
     fun updateBoard(@PathVariable("board_id") boardId: Long,@Valid @RequestBody updateBoardRequestDto: UpdateBoardRequestDto): ResponseEntity<Void> =
         boardConverter.toDto(updateBoardRequestDto)
-            .let{updateBoardService.execute(boardId, it)}
-            .let{ ResponseEntity.noContent().build()}
+            .let{ updateBoardService.execute(boardId, it) }
+            .let{ ResponseEntity.noContent().build() }
 
     @DeleteMapping("/{board_id}")
     fun deleteBoard(@PathVariable("board_id") boardId: Long): ResponseEntity<Void> =
         deleteBoardService.execute(boardId)
-            .let{ ResponseEntity.noContent().build()}
+            .let{ ResponseEntity.noContent().build() }
+
+    @PostMapping("/{board_id}/bookmark")
+    fun bookmarkBoard(@PathVariable("board_id") boardId: Long): ResponseEntity<Void> =
+        addBookmarkBoardService.execute(boardId)
+            .let{ ResponseEntity.noContent().build() }
 }

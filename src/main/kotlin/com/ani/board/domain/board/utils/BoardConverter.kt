@@ -16,6 +16,7 @@ import org.springframework.stereotype.Component
 interface BoardConverter {
     fun toDto(createBoardRequestDto: CreateBoardRequestDto): BoardDto
     fun toDto(updateBoardRequestDto: UpdateBoardRequestDto): UpdateBoardDto
+    fun toDto(board: Board): DetailBoardDto
     fun toResponseDto(boardListDto: BoardListDto): BoardListResponseDto
     fun toResponseDto(detailBoardDto: DetailBoardDto): DetailBoardResponseDto
     fun toEntity(boardDto: BoardDto, user: User): Board
