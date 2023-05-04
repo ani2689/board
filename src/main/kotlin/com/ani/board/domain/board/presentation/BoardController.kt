@@ -19,7 +19,8 @@ class BoardController (
     private val findAllBoardService: FindAllBoardService,
     private val findBoardByIdService: FindBoardByIdService,
     private val updateBoardService: UpdateBoardService,
-    private val addBookmarkBoardService: AddBookmarkBoardService
+    private val addBookmarkBoardService: AddBookmarkBoardService,
+    private val removeBookmarkBoardService: RemoveBookmarkBoardService
 ){
     @PostMapping
     fun createBoard(@Valid @RequestBody createBoardRequestDto: CreateBoardRequestDto): ResponseEntity<Void> =
@@ -51,7 +52,12 @@ class BoardController (
             .let{ ResponseEntity.noContent().build() }
 
     @PostMapping("/{board_id}/bookmark")
-    fun bookmarkBoard(@PathVariable("board_id") boardId: Long): ResponseEntity<Void> =
+    fun addBookmarkBoard(@PathVariable("board_id") boardId: Long): ResponseEntity<Void> =
         addBookmarkBoardService.execute(boardId)
+            .let{ ResponseEntity.noContent().build() }
+
+    @DeleteMapping("/{board_id}/bookmark")
+    fun removeBookmarkBoard(@PathVariable("board_id") boardId: Long): ResponseEntity<Void> =
+        removeBookmarkBoardService.execute(boardId)
             .let{ ResponseEntity.noContent().build() }
 }
