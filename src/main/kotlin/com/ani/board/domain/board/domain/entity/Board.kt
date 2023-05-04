@@ -23,11 +23,13 @@ class Board (
     val author: User
 
 ){
-    fun updateTitle(title: String){
+    fun updateTitle(title: String): Board{
         this.title = title
+        return this
     }
-    fun updateDetail(detail: String){
+    fun updateDetail(detail: String): Board{
         this.detail = detail
+        return this
     }
 
     fun addBookmark(): Board{
