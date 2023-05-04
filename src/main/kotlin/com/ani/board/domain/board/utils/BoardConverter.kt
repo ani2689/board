@@ -17,6 +17,8 @@ interface BoardConverter {
     fun toDto(createBoardRequestDto: CreateBoardRequestDto): BoardDto
     fun toDto(updateBoardRequestDto: UpdateBoardRequestDto): UpdateBoardDto
     fun toDto(board: Board): DetailBoardDto
+    fun toDto(detailBoardDto: DetailBoardDto): BoardDto
+    fun toDto(boardDto: BoardDto): BoardListDto
     fun toResponseDto(boardListDto: BoardListDto): BoardListResponseDto
     fun toResponseDto(detailBoardDto: DetailBoardDto): DetailBoardResponseDto
     fun toEntity(boardDto: BoardDto, user: User): Board
