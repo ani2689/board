@@ -12,7 +12,6 @@ import com.ani.board.domain.board.presentation.data.response.DetailBoardResponse
 import com.ani.board.domain.user.domain.entity.User
 import org.springframework.stereotype.Component
 
-@Component
 interface BoardConverter {
     fun toDto(createBoardRequestDto: CreateBoardRequestDto): BoardDto
     fun toDto(updateBoardRequestDto: UpdateBoardRequestDto): UpdateBoardDto
