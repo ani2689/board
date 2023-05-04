@@ -4,7 +4,9 @@ import com.ani.board.domain.board.domain.repository.BoardRepository
 import com.ani.board.domain.board.presentation.data.dto.DetailBoardDto
 import com.ani.board.domain.board.service.FindBoardByIdService
 import com.ani.board.domain.board.utils.BoardConverter
+import org.springframework.stereotype.Service
 
+@Service
 class FindBoardByIdServiceImpl(
     private val boardRepository: BoardRepository,
     private val boardConverter: BoardConverter
