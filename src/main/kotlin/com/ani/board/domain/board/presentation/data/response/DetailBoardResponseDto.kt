@@ -5,9 +5,5 @@ data class DetailBoardResponseDto (
     val title: String,
     val detail: String,
     val bookmark: Int,
-    val author: UserResponseDto
-){
-    data class UserResponseDto(
-        val name: String
-    )
-}
+    val author: String
+)
