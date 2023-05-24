@@ -11,7 +11,8 @@ import org.springframework.http.ResponseEntity
 import org.springframework.web.bind.annotation.*
 import javax.validation.Valid
 
-@RestController("/board")
+@RestController
+@RequestMapping("/board")
 class BoardController (
     private val boardConverter: BoardConverter,
     private val createBoardService: CreateBoardService,
