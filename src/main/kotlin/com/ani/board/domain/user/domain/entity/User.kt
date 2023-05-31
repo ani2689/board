@@ -1,6 +1,7 @@
 package com.ani.board.domain.user.domain.entity
 
 import com.ani.board.domain.board.domain.entity.Board
+import com.ani.board.domain.user.domain.entity.role.UserRole
 import com.fasterxml.jackson.annotation.JsonIgnore
 import org.hibernate.annotations.DynamicUpdate
 import javax.persistence.*
@@ -17,6 +18,9 @@ class User (
     var name: String,
 
     var password: String,
+
+    @Enumerated(EnumType.STRING)
+    var role: UserRole,
 
     @JsonIgnore
     @OneToMany(fetch = FetchType.LAZY)
