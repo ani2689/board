@@ -14,4 +14,6 @@ class UserUtil(
         val userDetails = SecurityContextHolder.getContext().authentication.principal as UserDetails
         return userRepository.findByName(userDetails.username)
     }
+
+    fun findByname(name: String): User? = userRepository.findByName(name)
 }
